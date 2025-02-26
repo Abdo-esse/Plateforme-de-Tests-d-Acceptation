@@ -1,5 +1,5 @@
 
-   <x-master title="Home" >
+   <x-master title="Home">
    @section('navbar')
    @include('partials.navbar')
    @endsection
