@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -42,7 +43,15 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        // Assigner le rôle "candidat" à l'utilisateur (avec l'ID 5)
+        $role = Role::find(5);  // Assurez-vous que le rôle avec l'ID 5 existe
+
+        // Si le rôle existe, l'associer à l'utilisateur
+        if ($role) {
+            $user->roles()->attach($role);  // Relation many-to-many dans la table pivot role_user
+        }
+
+        // event(new Registered($user));
 
         Auth::login($user);
 
