@@ -1,6 +1,9 @@
 
-   
-
+   <x-master title="Home" >
+   @section('navbar')
+   @include('partials.navbar')
+   @endsection
+   @section('main')
     <!-- Hero Section -->
     <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto">
@@ -80,7 +83,10 @@
             </a>
         </div>
     </section>
+@endsection
 
+@section('footer')
+@include('partials.footer')
+@endsection
  
-</body>
-</html>
+</x-master>

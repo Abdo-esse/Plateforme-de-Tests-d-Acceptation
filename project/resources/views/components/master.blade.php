@@ -18,5 +18,8 @@
     @yield('navbar')
     {{-- content --}}
     @yield('main')
+    {{-- footer --}}
+    @yield('footer')
+
 </body>
 </html>
