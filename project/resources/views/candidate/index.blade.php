@@ -1,41 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestAccept - Plateforme de Tests d'Acceptation</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        <style type="text/tailwindcss">
-          @theme {
-            --color-clifford: #da373d;
-          }
-        </style>
-</head>
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="text-xl font-bold">
-                        <span class="text-blue-600">Test</span><span class="text-gray-800">Accept</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-md hover:bg-blue-50 transition-colors">
-                                Logout
-                            </button>
-                        </form>
-                    <a href="{{ route('Formetest') }}" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
-                        Get Started Test
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+
+   
 
     <!-- Hero Section -->
     <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
@@ -117,14 +81,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8">
-        <div class="container mx-auto">
-            <div class="text-center">
-                <p class="mb-2">&copy; 2025 TestAccept - Plateforme de Tests d'Acceptation</p>
-                <p>Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
+ 
 </body>
 </html>
