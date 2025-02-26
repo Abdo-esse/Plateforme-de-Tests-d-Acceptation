@@ -22,14 +22,16 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'checkRole:admin'])->name('dashboard');
-Route::get('/home', function () {
-    return view('candidate.index');
-})->middleware(['auth', 'checkRole:candidate'])->name('home');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
+    Route::get('/home', function () {return view('candidate.index');})->name('home');
+    Route::get('/Formetest', function () {return view('candidate.formTest');})->name('Formetest');
 });
 
 require __DIR__.'/auth.php';
