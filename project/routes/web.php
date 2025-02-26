@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'checkRole:candidate'])->name('dashboard');
+})->middleware(['auth', 'checkRole:admin'])->name('dashboard');
+Route::get('/home', function () {
+    return view('candidate.index');
+})->middleware(['auth', 'checkRole:candidate'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
