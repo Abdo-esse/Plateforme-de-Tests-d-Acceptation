@@ -36,8 +36,12 @@ class CandidateController extends Controller
      */
     public function store(CandidateRequest $request)
     {
+        $formFields=$request->validated();
+        if($request->hasFile('cart_Identite')){
+            $formFields['cart_Identite']= $request->file('cart_Identite')->store('cart_Identite', 'public');
+        }
         
-        dd($request);
+        dd($formFields);
     }
 
     /**
