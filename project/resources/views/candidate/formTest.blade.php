@@ -6,20 +6,26 @@
                 <div class="mb-8 text-center">
                     <h1 class="text-2xl font-bold text-gray-800">Informations du candidat</h1>
                     <p class="text-gray-600 mt-2">Veuillez compléter le formulaire ci-dessous avant de commencer votre test</p>
+                    @if($errors->any())
+                    @foreach ($errors->all() as $item)
+                       
+                    <p class="text-gray-600 mt-2">{{$item}}</p>
+                                   @endforeach
+                     @endif
                 </div>
                 
-                <form action="{{route('inscription')}}" method="POST" enctype="multipart/form-data">
+                <form  action="{{ route('inscription') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <!-- Email et Date de naissance -->
+                    <!--  Date de naissance -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
-                            <input type="tel" id="telephone" name="tele" required 
+                            <input type="tel" id="telephone" value="{{old('tele')}}" name="tele" required 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                         <div>
                             <label for="date_naissance" class="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
-                            <input type="date" id="date_naissance" name="datenaissance" required 
+                            <input type="date" id="date_naissance" value="{{old('datenaissance')}}" name="datenaissance" required 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                     </div>
@@ -28,7 +34,7 @@
                     <div class="mb-6">
                         <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
                         <textarea id="adresse" name="adress" rows="3" required 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">{{old('adress')}}</textarea>
                     </div>
                     
                     {{-- campus  --}}
@@ -56,7 +62,7 @@
                                 </svg>
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                        <span>Télécharger un fichier</span>
+                                        <span> 📁 Choisir une image</span>
                                         <input id="file-upload" name="photo" type="file" class="sr-only" accept="image/*">
                                     </label>
                                     <p class="pl-1">ou glisser-déposer</p>

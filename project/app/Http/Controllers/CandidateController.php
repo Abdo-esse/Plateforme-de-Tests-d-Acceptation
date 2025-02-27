@@ -36,6 +36,7 @@ class CandidateController extends Controller
      */
     public function store(CandidateRequest $request)
     {
+        
         dd($request);
     }
 

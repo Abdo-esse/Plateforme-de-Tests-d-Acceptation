@@ -16,11 +16,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        // Vérifier si l'utilisateur est authentifié et a le rôle demandé
         if (!auth()->check() || !auth()->user()->hasRole($role)) {
             return redirect()->route('welcome')->with('error', 'Accès refusé.');
         }
-
         return $next($request);
     }
 }

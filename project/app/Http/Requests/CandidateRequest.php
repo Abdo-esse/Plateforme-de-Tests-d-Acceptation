@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CandidateRequest extends FormRequest
@@ -26,9 +27,13 @@ class CandidateRequest extends FormRequest
         return [
                 'campus' => 'required|in:youssoufia,safi,nador',
                 'adress' => 'required|string|max:255',
-                'tele' => 'required|string|regex:/^(?:\+212|0)[5-7][0-9]{8}$/',
-                // 'cart_Identite' => 'required|image|mimes:jpeg,png,pdf|max:2048|unique:candidates,cart_Identite',
-                'datenaissance' => 'required|date|before:today|after:18 years ago'
+                // 'tele' => 'required|string|regex:/^(?:\+212|0)[5-7][0-9]{8}$/',
+                // // 'cart_Identite' => 'required|image|mimes:jpeg,png,pdf|max:2048|unique:candidates,cart_Identite',
+                'datenaissance' =>[
+                    'required',
+                    'date',
+                    'before_or_equal:' . Carbon::now()->subYears(18)->format('Y-m-d')
+                ],
         ];
     }
 }
