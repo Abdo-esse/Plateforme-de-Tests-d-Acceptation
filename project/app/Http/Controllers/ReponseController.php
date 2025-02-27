@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Candidate;
+use App\Models\Reponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CandidateRequest;
 
-class CandidateController extends Controller
+class ReponseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        return view('candidate.index');
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        return view('candidate.formTest');
+        //
     }
 
     /**
@@ -35,26 +33,18 @@ class CandidateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CandidateRequest $request)
+    public function store(Request $request)
     {
-        $formFields=$request->validated();
-        if($request->hasFile('identity_card')){
-            $formFields['identity_card']= $request->file('identity_card')->store('identity_card', 'public');
-        }
-        $formFields['user_id'] = Auth::id();
-        Candidate::create($formFields);
-     
-        return redirect('/quiz');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Candidate  $candidate
+     * @param  \App\Models\Reponse  $reponse
      * @return \Illuminate\Http\Response
      */
-    public function show(Candidate $candidate)
+    public function show(Reponse $reponse)
     {
         //
     }
@@ -62,10 +52,10 @@ class CandidateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Candidate  $candidate
+     * @param  \App\Models\Reponse  $reponse
      * @return \Illuminate\Http\Response
      */
-    public function edit(Candidate $candidate)
+    public function edit(Reponse $reponse)
     {
         //
     }
@@ -74,10 +64,10 @@ class CandidateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Candidate  $candidate
+     * @param  \App\Models\Reponse  $reponse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Candidate $candidate)
+    public function update(Request $request, Reponse $reponse)
     {
         //
     }
@@ -85,10 +75,10 @@ class CandidateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Candidate  $candidate
+     * @param  \App\Models\Reponse  $reponse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Candidate $candidate)
+    public function destroy(Reponse $reponse)
     {
         //
     }
