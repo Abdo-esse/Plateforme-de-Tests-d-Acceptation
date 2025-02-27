@@ -14,7 +14,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        return view('candidate.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        return view('candidate.formTest');
     }
 
     /**

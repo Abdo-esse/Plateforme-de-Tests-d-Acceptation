@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CandidateController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
-    Route::get('/home', [CandidateController::class, 'destroy'])->name('home');
-    Route::get('/Formetest', function () {return view('candidate.formTest');})->name('Formetest');
+    Route::get('/home', [CandidateController::class, 'index'])->name('home');
+    Route::get('/startTest', [CandidateController::class, 'create'])->name('startTest');
+    Route::post('/startTest', [CandidateController::class, 'store'])->name('startTest');
+
 });
 
 require __DIR__.'/auth.php';

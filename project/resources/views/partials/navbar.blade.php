@@ -15,7 +15,7 @@
                             Logout
                         </button>
                     </form>
-                <a href="{{ route('Formetest') }}" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+                <a href="{{ route('startTest') }}" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
                     Get Started Test
                 </a>
             </div>
