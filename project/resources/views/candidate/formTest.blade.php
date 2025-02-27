@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestAccept - Formulaire de Test</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-      @theme {
-        --color-clifford: #da373d;
-      }
-    </style></head>
-<body class="bg-gray-50">
-  <!-- Form Section -->
+<x-master title="Formulaire de Tes">
+    @section('main')
     <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto max-w-3xl">
             <div class="bg-white rounded-lg shadow-md p-6 sm:p-8">
@@ -124,5 +112,5 @@
             </div>
         </div>
     </section>
-</body>
-</html>
+    @endsection
+</x-master>
