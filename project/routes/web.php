@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
     Route::get('/home', [CandidateController::class, 'index'])->name('home');
     Route::get('/startTest', [CandidateController::class, 'create'])->name('startTest');
-    Route::post('/startTest', [CandidateController::class, 'store'])->name('startTest');
+    Route::post('/inscription', [CandidateController::class, 'store'])->name('inscription');
 
 });
 

@@ -24,12 +24,10 @@ class CandidateRequest extends FormRequest
     public function rules()
     {
         return [
-            
-                'user_id' => 'required|exists:users,id',
                 'campus' => 'required|in:youssoufia,safi,nador',
                 'adress' => 'required|string|max:255',
                 'tele' => 'required|string|regex:/^(?:\+212|0)[5-7][0-9]{8}$/',
-                'cart_Identite' => 'required|image|mimes:jpeg,png,pdf|max:2048|unique:candidates,cart_Identite',
+                // 'cart_Identite' => 'required|image|mimes:jpeg,png,pdf|max:2048|unique:candidates,cart_Identite',
                 'datenaissance' => 'required|date|before:today|after:18 years ago'
         ];
     }

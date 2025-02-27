@@ -8,62 +8,43 @@
                     <p class="text-gray-600 mt-2">Veuillez compléter le formulaire ci-dessous avant de commencer votre test</p>
                 </div>
                 
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <!-- Nom et Prénom -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-                            <input type="text" id="nom" name="nom" required 
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label for="prenom" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-                            <input type="text" id="prenom" name="prenom" required 
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                    </div>
-                    
+                <form action="{{route('inscription')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <!-- Email et Date de naissance -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" id="email" name="email" required 
+                            <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
+                            <input type="tel" id="telephone" name="tele" required 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
                         <div>
                             <label for="date_naissance" class="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
-                            <input type="date" id="date_naissance" name="date_naissance" required 
+                            <input type="date" id="date_naissance" name="datenaissance" required 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         </div>
-                    </div>
-                    
-                    <!-- Téléphone -->
-                    <div class="mb-6">
-                        <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
-                        <input type="tel" id="telephone" name="telephone" required 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
                     
                     <!-- Adresse -->
                     <div class="mb-6">
                         <label for="adresse" class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
-                        <textarea id="adresse" name="adresse" rows="3" required 
+                        <textarea id="adresse" name="adress" rows="3" required 
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
                     </div>
                     
-                    <!-- Ville et Code postal -->
+                    {{-- campus  --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label for="ville" class="block text-sm font-medium text-gray-700 mb-1">Ville</label>
-                            <input type="text" id="ville" name="ville" required 
+                            <label for="ville" class="block text-sm font-medium text-gray-700 mb-1">campus</label>
+                            <select id="ville" name="campus" required 
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label for="code_postal" class="block text-sm font-medium text-gray-700 mb-1">Code postal</label>
-                            <input type="text" id="code_postal" name="code_postal" required 
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="" disabled selected>Choisir un campus</option>
+                                <option value="safi">Safi</option>
+                                <option value="nador">Nador</option>
+                                <option value="youssoufia">Youssoufia</option>
+                            </select>
                         </div>
                     </div>
+                    
                     
                     <!-- Upload d'image -->
                     <div class="mb-6">
