@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('phone'); 
             $table->text('identity_card'); 
             $table->date('birth_date'); 
+            $table->string('campus'); 
             $table->timestamps();
         });
     }
