@@ -14,12 +14,12 @@ class Candidate extends Model
     protected $fillable = [
         'user_id', 
         'campus', 
-        'adress', 
-        'tele', 
-        'cart_Identite', 
-        'datenaissance'
+        'address', 
+        'phone', 
+        'identity_card', 
+        'birth_date',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

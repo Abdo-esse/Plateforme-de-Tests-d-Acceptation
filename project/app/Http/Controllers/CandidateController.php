@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CandidateRequest;
 
 class CandidateController extends Controller
@@ -37,11 +38,15 @@ class CandidateController extends Controller
     public function store(CandidateRequest $request)
     {
         $formFields=$request->validated();
-        if($request->hasFile('cart_Identite')){
-            $formFields['cart_Identite']= $request->file('cart_Identite')->store('cart_Identite', 'public');
+        if($request->hasFile('identity_card')){
+            $formFields['identity_card']= $request->file('identity_card')->store('identity_card', 'public');
         }
-        
-        dd($formFields);
+        $formFields['user_id'] = Auth::id();
+        // dd($formFields);
+        Candidate::create($formFields);
+     
+        return redirect('/quiz');
+
     }
 
     /**

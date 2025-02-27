@@ -34,6 +34,9 @@ Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
     Route::get('/home', [CandidateController::class, 'index'])->name('home');
     Route::get('/startTest', [CandidateController::class, 'create'])->name('startTest');
     Route::post('/inscription', [CandidateController::class, 'store'])->name('inscription');
+    Route::get('/quiz', function(){
+          return dd(true);
+    })->name('quiz');
      
 
 });

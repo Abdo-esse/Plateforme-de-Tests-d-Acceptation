@@ -26,10 +26,10 @@ class CandidateRequest extends FormRequest
     {
         return [
                 'campus' => 'required|in:youssoufia,safi,nador',
-                'adress' => 'required|string|max:255',
-                // 'tele' => 'required|string|regex:/^(?:\+212|0)[5-7][0-9]{8}$/',
-                'cart_Identite' => 'required|image|mimes:jpeg,png,pdf',
-                'datenaissance' =>[
+                'address' => 'required|string|max:255',
+               'phone' => 'required|string|min:10',
+                'identity_card' => 'required|image|mimes:jpeg,png,pdf',
+                'birth_date' =>[
                     'required',
                     'date',
                     'before_or_equal:' . Carbon::now()->subYears(18)->format('Y-m-d')
