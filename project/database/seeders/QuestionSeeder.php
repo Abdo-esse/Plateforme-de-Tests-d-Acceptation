@@ -16,15 +16,11 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        // Créer une question
-        $question = Question::create([
-            'contenu' => 'Quelle est la capitale de la France ?',
-            'is_multiple' => false
-        ]);
-
-        // Ajouter des réponses
-        Reponse::create(['question_id' => $question->id, 'contenu' => 'Paris','score'=>32 ,'is_correct' => true]);
-        Reponse::create(['question_id' => $question->id, 'contenu' => 'Londres', 'score'=>-32,'is_correct' => false]);
-        Reponse::create(['question_id' => $question->id, 'contenu' => 'Berlin', 'score'=>-32,'is_correct' => false]);
+ // Générer 10 questions avec 3 à 5 réponses chacune
+ Question::factory(10)->create()->each(function ($question) {
+    Reponse::factory(rand(3, 5))->create([
+        'question_id' => $question->id
+    ]);
+});
     }
 }
