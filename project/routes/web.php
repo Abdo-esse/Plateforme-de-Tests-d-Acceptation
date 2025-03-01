@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CandidateController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\QuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +35,13 @@ Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
     Route::get('/home', [CandidateController::class, 'index'])->name('home');
     Route::get('/startTest', [CandidateController::class, 'create'])->name('startTest');
     Route::post('/inscription', [CandidateController::class, 'store'])->name('inscription');
-    Route::get('/quiz', function(){
-          return dd(true);
-    })->name('quiz');
+    Route::get('/questions', [QuestionController::class, 'index']);
+    // Passer à la question suivante
+Route::post('/quiz/{questionId}/next', [QuestionController::class, 'next'])->name('questions.next');
+
+// Afficher les résultats
+Route::get('/quiz/results', [QuestionController::class, 'results'])->name('quiz.results');
+
      
 
 });

@@ -44,7 +44,7 @@ class CandidateController extends Controller
         $formFields['user_id'] = Auth::id();
         Candidate::create($formFields);
      
-        return redirect('/quiz');
+        return redirect('/questions');
 
     }
 
