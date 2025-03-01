@@ -15,7 +15,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::inRandomOrder()->limit(10)->get();
-        dd($questions);
+        // dd($questions);
         return view('candidate.quiz',compact('questions'));
     }
 
