@@ -49,7 +49,11 @@ class QuestionController extends Controller
             }
         }
     }
-
+     
+    QuizHistory::create([
+        'user_id' => Auth::id(),
+        'total_score' => $totalScore,
+    ]);
    
     dd($totalScore);
 }
