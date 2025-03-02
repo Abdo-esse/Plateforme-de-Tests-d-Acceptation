@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reponse;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -36,9 +37,24 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        dd($request);
+{
+   
+    $totalScore = 0;
+    if ($request->has('answers')) {
+
+        foreach ($request->input('answers') as $questionId => $answerIds) {
+            $answers = Reponse::whereIn('id', (array)$answerIds)->get();
+            foreach ($answers as $answer) {
+               $totalScore += $answer->score;
+            }
+        }
     }
+
+   
+    dd($totalScore);
+}
+
+    
 
     /**
      * Display the specified resource.

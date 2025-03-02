@@ -33,7 +33,7 @@
                                     @else <!-- Pour les questions à choix unique -->
                                         @forelse($question->reponses as $answer)
                                             <label class="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
-                                                <input type="radio" data-score="{{ $answer->score }}" name="answers[{{ $question->id }}]" value="{{ $answer->id }}" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300" >
+                                                <input type="radio"  name="answers[{{ $question->id }}]" value="{{ $answer->id }}" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300" >
                                                 <span class="ml-3 text-gray-700">{{ $answer->contenu }}</span>
                                             </label>
                                             @empty <p>NOT reponse</p>
