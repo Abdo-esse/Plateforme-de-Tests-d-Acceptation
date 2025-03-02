@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reponse;
 use App\Models\Question;
+use App\Models\Resultat;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -37,28 +38,40 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-   
-    $totalScore = 0;
-    if ($request->has('answers')) {
-
-        foreach ($request->input('answers') as $questionId => $answerIds) {
-            $answers = Reponse::whereIn('id', (array)$answerIds)->get();
-            foreach ($answers as $answer) {
-               $totalScore += $answer->score;
-            }
-        }
-    }
-     
-    QuizHistory::create([
-        'user_id' => Auth::id(),
-        'total_score' => $totalScore,
-    ]);
-   
-    dd($totalScore);
-}
-
+    {
+        $totalScore = 0;
     
+        if ($request->has('answers')) {
+            // Créer l'historique du quiz d'abord
+            $quizHistory = QuizHistory::create([
+                'user_id' => Auth::id(),
+                'total_score' => 0, // Le score sera mis à jour plus tard
+            ]);
+    
+            foreach ($request->input('answers') as $questionId => $answerIds) {
+                $answers = Reponse::whereIn('id', (array)$answerIds)->get();
+                
+                foreach ($answers as $answer) {
+                    // Stocker la réponse choisie par l'apprenant
+                    QuizAnswer::create([
+                        'quiz_history_id' => $quizHistory->id,
+                        'question_id' => $questionId,
+                        'answer_id' => $answer->id,
+                    ]);
+    
+                    // Calculer le score si la réponse est correcte
+                    if ($answer->is_correct) {
+                        $totalScore += $answer->score;
+                    }
+                }
+            }
+    
+            // Mettre à jour le score total après le calcul
+            $quizHistory->update(['total_score' => $totalScore]);
+        }
+    
+
+    }
 
     /**
      * Display the specified resource.
