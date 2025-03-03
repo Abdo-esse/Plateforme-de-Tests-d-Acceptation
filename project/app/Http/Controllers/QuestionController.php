@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Reponse;
 use App\Models\Question;
 use App\Models\Resultat;
+use App\Models\QuizHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -40,39 +42,31 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $totalScore = 0;
-    
+
         if ($request->has('answers')) {
-            // Créer l'historique du quiz d'abord
-            $quizHistory = QuizHistory::create([
+            $resultat = Resultat::create([
                 'user_id' => Auth::id(),
-                'total_score' => 0, // Le score sera mis à jour plus tard
+                'total_score' => 0, 
             ]);
     
             foreach ($request->input('answers') as $questionId => $answerIds) {
                 $answers = Reponse::whereIn('id', (array)$answerIds)->get();
                 
                 foreach ($answers as $answer) {
-                    // Stocker la réponse choisie par l'apprenant
-                    QuizAnswer::create([
-                        'quiz_history_id' => $quizHistory->id,
+                    QuizHistory::create([
+                        'resultat_id' => $resultat->id,
                         'question_id' => $questionId,
-                        'answer_id' => $answer->id,
+                        'reponse_id' => $answer->id,
                     ]);
     
-                    // Calculer le score si la réponse est correcte
-                    if ($answer->is_correct) {
+                   
                         $totalScore += $answer->score;
-                    }
                 }
             }
-    
-            // Mettre à jour le score total après le calcul
-            $quizHistory->update(['total_score' => $totalScore]);
+            $resultat->update(['total_score' => $totalScore]);
         }
-    
-
+         dd($totalScore);
     }
-
     /**
      * Display the specified resource.
      *
