@@ -25,4 +25,14 @@ class QuizHistory extends Model
     {
         return $this->belongsTo(Reponse::class);
     }
+
+     /**
+     * Insère les données d'historique du quiz en une seule requête pour optimiser la performance.
+     */
+    public static function enregistrerHistoriqueQuiz(array $quizHistoryData)
+    {
+        if (!empty($quizHistoryData)) {
+            QuizHistory::insert($quizHistoryData);
+        }
+    }
 }

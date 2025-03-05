@@ -16,4 +16,12 @@ class Reponse extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+     /**
+     * Récupère toutes les réponses en une seule requête pour améliorer la performance.
+     */
+    public static function recupererReponses(array $answers)
+    {
+        return Reponse::whereIn('id', collect($answers)->flatten())->get();
+    }
 }
