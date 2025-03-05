@@ -11,7 +11,7 @@ class QuizHistory extends Model
 
     protected $fillable = ['resultat_id', 'question_id', 'reponse_id'];
 
-    public function quizHistory()
+    public function resultat()
     {
         return $this->belongsTo(Resultat::class);
     }
