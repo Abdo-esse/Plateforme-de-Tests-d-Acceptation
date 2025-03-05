@@ -45,7 +45,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         // Calculer le score du candidat
-        $totalScore = $this->calculerScore($request);
+        $totalScore = Resultat::calculerScore($request);
     
         // Vérifier si l'apprenant est admissible au test présentiel
         if ($totalScore > 65) {
@@ -54,20 +54,7 @@ class QuestionController extends Controller
     
         return response()->json(['message' => 'Votre score est insuffisant pour un test présentiel.']);
     }
-    private function calculerScore(Request $request)
-    {
-        if (!$request->has('answers')) {
-            return 0;
-        }
     
-        $resultat = Resultat::creerResultat();
-        $totalScore = Resultat::traiterReponses($request->input('answers'), $resultat->id);
-    
-        // Mise à jour du score total dans la base de données
-        $resultat->update(['total_score' => $totalScore]);
-    
-        return $totalScore;
-    }
     
   
     

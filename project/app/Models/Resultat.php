@@ -56,9 +56,20 @@ class Resultat extends Model
                 }
             }
         }
-    
-        // Enregistrement en masse des historiques de quiz
         QuizHistory::enregistrerHistoriqueQuiz($quizHistoryData);
+    
+        return $totalScore;
+    }
+
+    public static function calculerScore( $request)
+    {
+        if (!$request->has('answers')) {
+            return 0;
+        }
+    
+        $resultat = Resultat::creerResultat();
+        $totalScore = Resultat::traiterReponses($request->input('answers'), $resultat->id);
+        $resultat->update(['total_score' => $totalScore]);
     
         return $totalScore;
     }
