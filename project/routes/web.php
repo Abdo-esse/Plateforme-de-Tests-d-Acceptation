@@ -37,10 +37,8 @@ Route::middleware(['auth', 'checkRole:candidate'])->group(function () {
     Route::post('/inscription', [CandidateController::class, 'store'])->name('inscription');
     Route::get('/questions', [QuestionController::class, 'index']);
     Route::post('/questions/store', [QuestionController::class, 'store'])->name('questions.store');
-    // Passer à la question suivante
+    
 // Route::post('/quiz/{questionId}/next', [QuestionController::class, 'next'])->name('questions.next');
-
-// Afficher les résultats
 // Route::get('/quiz/results', [QuestionController::class, 'results'])->name('quiz.results');
 
      
