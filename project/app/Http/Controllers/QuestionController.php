@@ -48,11 +48,11 @@ class QuestionController extends Controller
         $totalScore = Resultat::calculerScore($request);
     
         // Vérifier si l'apprenant est admissible au test présentiel
-        if ($totalScore > 65) {
-            return $this->programmerTestPresentiel();
-        }
+        // if ($totalScore > 65) {
+            return TestPresentielController::programmerTestPresentiel();
+        // }
     
-        return response()->json(['message' => 'Votre score est insuffisant pour un test présentiel.']);
+        // return response()->json(['message' => 'Votre score est insuffisant pour un test présentiel.']);
     }
     
     
@@ -65,39 +65,13 @@ class QuestionController extends Controller
    
     
 
-private function programmerTestPresentiel()
-{
-    $dateDisponible = Staff::trouverProchaineDateDisponible();
-    $examinateur = $dateDisponible['examinateur'];
+    
+    
 
-    if (!$examinateur || !$examinateur->user) {
-        return response()->json(['message' => 'Aucun examinateur disponible.'], 400);
-    }
 
-    $event = Event::create([
-        'name' => 'Test Présentiel',
-        'date_debu' => $dateDisponible['date_debut'],
-        'date_fin' => $dateDisponible['date_fin'],
-    ]);
 
-    // Attacher l'examinateur à l'événement
-    $event->staff()->attach($examinateur->id);
 
-    // Enregistrer le test dans TestPresentiel
-    TestPresentiel::create([
-        'staff_id' => $examinateur->id,
-        'candidate_id' => Auth::id(),
-        'date_debu' => $dateDisponible['date_debut'],
-        'date_fin' => $dateDisponible['date_fin'],
-    ]);
 
-    return response()->json([
-        'message' => 'Test programmé avec succès.',
-        'event_id' => $event->id,
-        'date_debut' => $event->date_debu,
-        'examinateur' => $examinateur->user->name,
-    ]);
-}
 
 
 

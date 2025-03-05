@@ -14,4 +14,18 @@ class Event extends Model
     public function staff() {
         return $this->belongsToMany(Staff::class, 'event_staff');
     }
+
+    public static function creerEvenement($dateDisponible)
+{
+    return Event::create([
+        'name' => 'Test Présentiel',
+        'date_debu' => $dateDisponible['date_debut'],
+        'date_fin' => $dateDisponible['date_fin'],
+    ]);
+}
+
+public static function attacherExaminateurAEvenement($event, $examinateur)
+{
+    $event->staff()->attach($examinateur->id);
+}
 }

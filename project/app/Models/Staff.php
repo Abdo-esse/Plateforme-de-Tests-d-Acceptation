@@ -52,4 +52,16 @@ class Staff extends Model
             });
         })->first();
     }
+
+    public static function obtenirDateEtExaminateurDisponible()
+{
+    $dateDisponible = Staff::trouverProchaineDateDisponible();
+    $examinateur = $dateDisponible['examinateur'];
+
+    if (!$examinateur || !$examinateur->user) {
+        return null; 
+    }
+
+    return $dateDisponible;
+}
 }

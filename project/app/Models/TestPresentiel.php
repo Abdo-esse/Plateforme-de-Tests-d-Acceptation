@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TestPresentiel extends Model
 {
@@ -20,4 +21,13 @@ class TestPresentiel extends Model
     {
         return $this->belongsTo(Candidate::class, 'candidate_id');
     }
+    public static function enregistrerTestPresentiel($examinateur, $dateDisponible)
+{
+    TestPresentiel::create([
+        'staff_id' => $examinateur->id,
+        'candidate_id' => Auth::id(),
+        'date_debu' => $dateDisponible['date_debut'],
+        'date_fin' => $dateDisponible['date_fin'],
+    ]);
+}
 }
